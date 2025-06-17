@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='client_styles.css') }}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .welcome-heading {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .action-button {
+            background-color: #3f51b5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .action-button:hover {
+            background-color: #303f9f;
+        }
+
+        .section {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Slideshow container styles */
+        .slideshow-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin: auto;
+            position: relative;
+        }
+
+        .slideshow-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            position: absolute;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .description-box {
+            background-color: #ffffff;
+            border-left: 5px solid #3f51b5;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #paymentsSection {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-top: 2px solid #3f51b5;
+            margin-top: 30px;
+            border-radius: 6px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        #paymentsSection h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .payment-record {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .payment-record:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Client Dashboard</h1>
+    </div>
+
+    <div class="section">
+        <h1 class="welcome-heading">Welcome to Your Dashboard, {{ client_name }}!</h1>
+
+        <div class="buttons-container">
+            <button class="action-button" onclick="togglePayments()">View Payments</button>
+            <button class="action-button" id="community-link">Community</button>
+        </div>
+
+        <!-- Slideshow Section -->
+        <div class="slideshow-container">
+            <img id="slide1" src="{{ url_for('static', filename='assets/house1.jpeg') }}" alt="Property Image 1">
+            <img id="slide2" src="{{ url_for('static', filename='assets/house2.jpeg') }}" alt="Property Image 2" style="display:none;">
+            <img id="slide3" src="{{ url_for('static', filename='assets/house4.jpg') }}" alt="Property Image 3" style="display:none;">
+            <img id="slide4" src="{{ url_for('static', filename='assets/house3.jpg') }}" alt="Property Image 4" style="display:none;">
+        </div>
+
+        <div class="description-box">
+            <h3>Bungalow Description</h3>
+            <p>
+                This elegant bungalow features a serene and cozy layout with a spacious living area, 
+                two well-lit bedrooms, a modern kitchen, and a clean, tiled bathroom. The house offers 
+                a perfect blend of comfort and simplicity, with large windows for natural lighting and 
+                a front porch ideal for relaxing afternoons. Surrounded by lush greenery and located in 
+                a peaceful neighborhood, it’s an ideal home for small families or individuals seeking 
+                tranquility and charm.
+            </p>
+        </div>
+
+        <div id="paymentsSection">
+            <h3>Payment History</h3>
+            <div class="payment-record">
+                <strong>Date:</strong> March 10, 2025<br>
+                <strong>Amount:</strong> KES 25,000<br>
+                <strong>Status:</strong> Paid
+            </div>
+            <div class="payment-record">
+                <strong>Date:</strong> February 10, 2025<br>
+                <strong>Amount:</strong> KES 25,000<br>
+                <strong>Status:</strong> Paid
+            </div>
+            <div class="payment-record">
+                <strong>Date:</strong> January 10, 2025<br>
+                <strong>Amount:</strong> KES 25,000<br>
+                <strong>Status:</strong> Paid
+            </div>
+        </div>
+    </div>
+    
+
+
+    
+
+    <script>
+        let slideIndex = 0;
+        const slides = [
+            document.getElementById('slide1'),
+            document.getElementById('slide2'),
+            document.getElementById('slide3'),
+            document.getElementById('slide4')
+        ];
+
+        function showSlide() {
+            slides.forEach((slide, index) => {
+                slide.style.display = (index === slideIndex) ? 'block' : 'none';
+            });
+
+            slideIndex = (slideIndex + 1) % slides.length;
+        }
+
+        setInterval(showSlide, 3000); // Change image every 3 seconds
+        showSlide(); // Initial call to display the first image
+
+        function togglePayments() {
+            const paymentSection = document.getElementById('paymentsSection');
+            if (paymentSection.style.display === 'none' || paymentSection.style.display === '') {
+                paymentSection.style.display = 'block';
+                window.scrollTo({
+                    top: paymentSection.offsetTop,
+                    behavior: 'smooth'
+                });
+            } else {
+                paymentSection.style.display = 'none';
+            }
+        }
+
+        document.getElementById("community-link")?.addEventListener("click", () => {
+            window.location.href = "/client/community";
+        });
+    </script>
+</body>
+</html>

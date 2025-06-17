@@ -1,0 +1,312 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Top Navbar */
+.sidebar {
+    width: 100%;
+    height: auto;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.sidebar a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+}
+.sidebar a:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+}
+
+/* Logo */
+.logo {
+    height: 40px;
+    width: auto;
+    margin-left: 20px;
+    display: block;
+}
+
+/* Horizontal Panels Container */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 100px 20px 20px; /* top padding for fixed navbar */
+}
+
+/* Each Panel */
+.panel {
+    min-width: 600px;
+    flex: 0 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Panel Variants */
+.panel.dashboard {
+    border-top: 4px solid #2980b9;
+}
+.panel.users {
+    border-top: 4px solid #27ae60;
+}
+.panel.settings {
+    border-top: 4px solid #8e44ad;
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        padding-top: 120px;
+    }
+    .panel {
+        min-width: 100%;
+    }
+}
+
+/* Dashboard Header (within a panel) */
+.header {
+    background: #2980b9;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background: #3498db;
+    color: white;
+    text-transform: uppercase;
+}
+td {
+    transition: background 0.3s;
+}
+td:hover {
+    background: #ecf0f1;
+}
+
+/* Buttons */
+button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 5px;
+}
+button:hover {
+    background: #2ecc71;
+    transform: scale(1.05);
+}
+
+/* Forms */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+form:hover {
+    transform: scale(1.02);
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+input:focus, select:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Cover Photo */
+.cover-photo {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.cover-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Horizontal Admin Panel Menu (extends .sidebar) */
+
+/* Re-style the sidebar for horizontal layout */
+.sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 10px;
+}
+
+/* Hide the <h2> inside the sidebar if present */
+.sidebar h2 {
+    display: none;
+}
+
+/* Make the list horizontal instead of stacked */
+.sidebar ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+}
+
+/* Style each item as a horizontal nav link */
+.sidebar ul li {
+    display: inline-block;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    background: transparent;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.sidebar ul li a i {
+    margin-right: 8px;
+}
+
+/* Hover effect */
+.sidebar ul li a:hover {
+    background: #34495e;
+    transform: translateY(-2px);
+}
+
+/* Adjust content padding to avoid overlap */
+.content {
+    padding-top: 120px;
+    margin-left: 0; /* Remove sidebar offset */
+}
+
+/* Dropdown Button Style */
+.sidebar .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.sidebar .dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Dropdown Content (hidden by default) */
+.sidebar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.sidebar .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.3s;
+}
+
+.sidebar .dropdown-content a:hover {
+    background-color: #2980b9;
+}
+
+/* Show the dropdown content when hovering over the dropdown button */
+.sidebar .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Ensure dropdown appears above other content */
+.sidebar .dropdown-content {
+    z-index: 2;
+}
+
+/* Responsive: stack menu if screen is narrow */
+@media (max-width: 768px) {
+    .sidebar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sidebar ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .sidebar ul li {
+        width: 100%;
+    }
+
+    .sidebar ul li a {
+        width: 100%;
+    }
+
+    .content {
+        padding-top: 160px;
+    }
+}
+
